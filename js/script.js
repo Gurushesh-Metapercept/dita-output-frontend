@@ -403,28 +403,28 @@ function setActiveClassOnClick(e) {
 // ========================================================================= Print and Download Function 
 
 
-window.onload = function() {
-    document.getElementById('download-btn').addEventListener('click', function() {
-      const element = document.querySelector('article').cloneNode(true);
-      const elementsToIgnore = element.querySelectorAll('.ignore-this');
+// window.onload = function() {
+//     document.getElementById('download-btn').addEventListener('click', function() {
+//       const element = document.querySelector('article').cloneNode(true);
+//       const elementsToIgnore = element.querySelectorAll('.ignore-this');
       
-      elementsToIgnore.forEach(function(element) {
-        element.remove();
-      })
+//       elementsToIgnore.forEach(function(element) {
+//         element.remove();
+//       })
 
-    const imageTypes = ['png', 'jpeg', 'webp']; 
-    const options = {
-      margin: 10, // Optional: Adjust margin if needed
-      filename: 'page.pdf',
-      image: { type: imageTypes, quality: 0.98 }, 
-      html2canvas: { scale: 2 }, // Adjust scale if needed
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } // Set A4 format
-    };
+//     const imageTypes = ['png', 'jpeg', 'webp']; 
+//     const options = {
+//       margin: 10, // Optional: Adjust margin if needed
+//       filename: 'page.pdf',
+//       image: { type: imageTypes, quality: 0.98 }, 
+//       html2canvas: { scale: 2 }, // Adjust scale if needed
+//       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } // Set A4 format
+//     };
 
-    console.log(element)
-    html2pdf().from(element).set(options).save('page.pdf');
-  });
-}
+//     console.log(element)
+//     html2pdf().from(element).set(options).save('page.pdf');
+//   });
+// }
 
 
 // ========================================================================= Working merged page code 
@@ -488,21 +488,57 @@ window.onload = function() {
 
 
 // ========================================================================= Window.print function
+function printPage() {
+  // Add the no-print class to elements when printing
+  var elementsToHide = document.querySelectorAll('.no-print');
+  elementsToHide.forEach(function(element) {
+    element.style.display = 'none';
+  });
+
+  // Set the print style for hiding headers
+  var style = document.createElement('style');
+  style.innerHTML = '@page { size: auto; margin-top: 5mm; margin-bottom: 5mm; }';
+  document.head.appendChild(style);
+
+  // Trigger the browser's print dialog
+  window.print();
+
+  // Remove the added style and restore the display of hidden elements after printing
+  style.remove();
+  elementsToHide.forEach(function(element) {
+    element.style.display = 'block';
+  });
+}
+
 // function printPage() {
 //   // Add the no-print class to elements when printing
-//   var elementsToHide = document.querySelectorAll('.no-print');   //add this class name to those div's which you want to hide while printing current page 
+//   var elementsToHide = document.querySelectorAll('.no-print');
 //   elementsToHide.forEach(function(element) {
 //     element.style.display = 'none';
 //   });
 
+//   // Set the print style for hiding headers
+//   var style = document.createElement('style');
+//   style.innerHTML = `
+//   @page {
+//     size: auto;
+//     margin-top: 20mm; 
+//     margin-bottom: 20mm;
+//   }
+// `;
+//   document.head.appendChild(style);
+
 //   // Trigger the browser's print dialog
 //   window.print();
 
-//   // Restore the display of hidden elements after printing
+//   // Remove the added style and restore the display of hidden elements after printing
+//   style.remove();
 //   elementsToHide.forEach(function(element) {
 //     element.style.display = 'block';
 //   });
 // }
+
+
 
 
 

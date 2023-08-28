@@ -643,10 +643,13 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
 .printBtn {
   cursor: pointer;
 }
-.no-print {
-  display: none;
-}
 
+/* CSS for printing */
+@media print {
+  .hide-print {
+    display: none !important;
+  }
+}
 
 
 /* ================================================================================= TOC -- Fist Page  */
