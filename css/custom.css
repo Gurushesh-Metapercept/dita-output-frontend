@@ -337,11 +337,11 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
 }
 
 .commentForm form {
-  display: flex;
+  /* display: flex; */
   max-width: 500px;
   margin: 0 auto;
-  flex-direction: column;
-  align-items: center;
+  /* flex-direction: column; */
+  /* align-items: center; */
 }
 
 @media (max-width: 768px) { 
@@ -523,6 +523,7 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
+
 #headerSearchBox {
   outline: none;
   border-color: transparent;
@@ -570,6 +571,7 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   outline: none;
   background: var(--primary-400);
   color: #fff;
+  margin: 0 auto;
   margin-top: 1rem;
   padding: 12px 24px;
   border-radius: 5px;
@@ -652,10 +654,175 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
 }
 
 
+
+/* Firefox */
+@media (prefers-color-scheme: dark) {
+  :root {
+      color-scheme: light !important;
+  }
+}
+
+/* Chrome */
+@media (forced-colors: active) {
+  :root {
+      color-scheme: light !important;
+  }
+}
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+
 /* ================================================================================= TOC -- Fist Page  */
+.map {
+  padding-left: 0;
+}
 
-/* #ditamap-7460 {
+#myUL {
+  margin: 0;
+  padding: 0 1rem;
+  border: 1px solid #00000034;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
 
+.caret {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 1rem;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  transition: transform 0.3s ease; 
+  
+}
+
+ .menu__icon {
+  width: 20px; 
+  height: 20px; 
+  background-size: contain; 
+  background-repeat: no-repeat;
+  margin-right: 6px;
+  transition: transform 0.3s ease; 
+
+}
+
+.caret-down .menu__icon {
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+}
+
+.nested {
+  display: none;
+}
+
+.tocActive {
+  display: block;
+  background: #eee;
+  padding-left: 43px;
+}
+
+.caret:hover {
+  background: #eee;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.caret-down {
+  background: #eee;
+}
+
+#myUL .map .topicref.topichead {
+  margin-top: 1rem;
+}
+
+.nested .topicref.topichead {
+  margin-top: 0 !important;
+}
+
+.tocActive li span{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nested .topicref a {
+  text-decoration: none;
+  color: #000 !important;
+  font-size: 0.875em;
+}
+.nested .topicref a:hover {
+  color: var(--primary-500) !important;
+}
+
+/* .nested .topicref {
+  padding: 10px 0 !important;
 } */
 
+/* .tocActive .topicref .topichead {
+  padding: 0 0;
+} */
 
+.tocActive a {
+  margin-top: 10px;
+}
+
+ul.nested.tocActive {
+  padding-bottom: 10px ;
+}
+
+ul.nested.tocActive li {
+  margin-bottom: 10px;
+}
+
+.map ul.nested.tocActive {
+  margin-top: 0px ;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+ul.nested.tocActive li:last-child {
+  margin-bottom: 0px;
+}
+
+
+.map > li:not(ul) {
+  font-weight: bold;
+}
+
+.nested li {
+  font-weight: normal;
+}
+
+.searchBoxWrapper2 {
+  display: flex;
+  align-items: center;
+  border: 1px solid #8791AB;
+  padding-right: 12px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+
+  width: 100% !important;
+}
+
+@media (min-width: 768px) { 
+  .searchBoxWrapper2 {
+    max-width: 500px;
+  }
+}

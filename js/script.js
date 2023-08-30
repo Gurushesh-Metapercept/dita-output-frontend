@@ -402,6 +402,114 @@ function setActiveClassOnClick(e) {
 
 // ========================================================================= Print and Download Function 
 
+window.onload = function() {
+  document.getElementById('download-btn').addEventListener('click', function() {
+    window.scrollTo(0, 0);
+
+    setTimeout(async function() {
+      const headerElement = document.querySelector('#mainHeader').cloneNode(true);
+      const articleElement = document.querySelector('article').cloneNode(true);
+
+      const elementsToIgnore = articleElement.querySelectorAll('.ignore-this');
+      elementsToIgnore.forEach(function(element) {
+        element.remove();
+      });
+
+      const headerElementsToIgnore = headerElement.querySelectorAll('.ignore-this');
+      headerElementsToIgnore.forEach(function(element) {
+        element.remove();
+      });
+
+      const combinedElement = document.createElement('div');
+      combinedElement.appendChild(headerElement);
+      combinedElement.appendChild(articleElement);
+
+      const imageTypes = ['png', 'jpeg', 'webp']; 
+      const options = {
+        margin: 10, 
+        filename: 'page.pdf',
+        image: { type: imageTypes, quality: 0.98 }, 
+        html2canvas: { scale: 2 }, 
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', width: 1366, height: 768 } 
+      };
+
+      try {
+        await html2pdf().from(combinedElement).set(options).save('page.pdf');
+        console.log('PDF generated and saved successfully.');
+
+        // Any additional code you want to execute after the PDF is generated and saved
+
+      } catch (error) {
+        console.error('An error occurred while generating or saving the PDF:', error);
+      }
+    }, 1000);
+  });
+};
+
+
+
+// window.onload = function() {
+//   document.getElementById('download-btn').addEventListener('click', function() {
+//     console.log("hii");
+//     const headerElement = document.querySelector('#mainHeader').cloneNode(true);
+//     const articleElement = document.querySelector('article').cloneNode(true);
+
+//     const elementsToIgnore = articleElement.querySelectorAll('.ignore-this');
+//     elementsToIgnore.forEach(function(element) {
+//       element.remove();
+//     });
+
+//     const headerElementsToIgnore = headerElement.querySelectorAll('.ignore-this');
+//     headerElementsToIgnore.forEach(function(element) {
+//       element.remove();
+//     });
+    
+
+//     const combinedElement = document.createElement('div');
+//     combinedElement.appendChild(headerElement);
+//     combinedElement.appendChild(articleElement);
+
+//     const imageTypes = ['png', 'jpeg', 'webp']; 
+//     const options = {
+//       margin: 10, 
+//       filename: 'page.pdf',
+//       image: { type: imageTypes, quality: 0.98 }, 
+//       html2canvas: { scale: 2 }, 
+//       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+//     };
+
+//     html2pdf().from(combinedElement).set(options).save('page.pdf');
+//   });
+// }
+
+// window.onload = function() {
+//   document.getElementById('download-btn').addEventListener('click', function() {
+//     console.log("hii")
+//       const headerElement = document.querySelector('#mainHeader').cloneNode(true);
+//       const articleElement = document.querySelector('article').cloneNode(true);
+
+//       const elementsToIgnore = articleElement.querySelectorAll('.ignore-this');
+//       elementsToIgnore.forEach(function(element) {
+//           element.remove();
+//       });
+      
+
+//       const combinedElement = document.createElement('div');
+//       combinedElement.appendChild(headerElement);
+//       combinedElement.appendChild(articleElement);
+
+//       const imageTypes = ['png', 'jpeg', 'webp']; 
+//       const options = {
+//           margin: 10, 
+//           filename: 'page.pdf',
+//           image: { type: imageTypes, quality: 0.98 }, 
+//           html2canvas: { scale: 2 }, 
+//           jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+//       };
+
+//       html2pdf().from(combinedElement).set(options).save('page.pdf');
+//   });
+// }
 
 // window.onload = function() {
 //     document.getElementById('download-btn').addEventListener('click', function() {
@@ -488,27 +596,57 @@ function setActiveClassOnClick(e) {
 
 
 // ========================================================================= Window.print function
+// function printPage() {
+  
+//   let elementsToHide = document.querySelectorAll('.no-print');
+//   elementsToHide.forEach(function(element) {
+//     element.style.display = 'none';
+//   });
+
+  
+//   let style = document.createElement('style');
+//   style.innerHTML = '@page { size: auto; margin-top: 5mm; margin-bottom: 5mm; }';
+//   document.head.appendChild(style);
+  
+//   window.print();
+
+//   style.remove();
+//   elementsToHide.forEach(function(element) {
+//     element.style.display = 'block';
+//   });
+// }
+
+
+
 function printPage() {
-  // Add the no-print class to elements when printing
-  var elementsToHide = document.querySelectorAll('.no-print');
+
+  window.scrollTo(0, 0);
+
+  setTimeout(() => {
+    console.log("triggered")
+
+  let elementsToHide = document.querySelectorAll('.no-print');
   elementsToHide.forEach(function(element) {
     element.style.display = 'none';
   });
 
-  // Set the print style for hiding headers
-  var style = document.createElement('style');
+
+  let style = document.createElement('style');
   style.innerHTML = '@page { size: auto; margin-top: 5mm; margin-bottom: 5mm; }';
   document.head.appendChild(style);
 
-  // Trigger the browser's print dialog
-  window.print();
 
-  // Remove the added style and restore the display of hidden elements after printing
-  style.remove();
+  window.print();
+  // style.remove();
+
   elementsToHide.forEach(function(element) {
-    element.style.display = 'block';
+    element.style.display = '';
   });
+  }, 500)
 }
+
+
+
 
 // function printPage() {
 //   // Add the no-print class to elements when printing
@@ -575,3 +713,4 @@ function printPage() {
 //     html2pdf().from(combinedElement).set(options).save('page.pdf');
 //   });
 // };
+
