@@ -826,3 +826,15 @@ ul.nested.tocActive li:last-child {
     max-width: 500px;
   }
 }
+
+@page {
+  size: auto;   
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media print {
+  a[href]:after {
+      content: none !important;
+  }
+}

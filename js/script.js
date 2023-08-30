@@ -631,9 +631,9 @@ function printPage() {
   });
 
 
-  let style = document.createElement('style');
-  style.innerHTML = '@page { size: auto; margin-top: 5mm; margin-bottom: 5mm; }';
-  document.head.appendChild(style);
+  // let style = document.createElement('style');
+  // style.innerHTML = '@page { size: auto; margin-top: 5mm; margin-bottom: 5mm; }';
+  // document.head.appendChild(style);
 
 
   window.print();
