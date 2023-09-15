@@ -1,100 +1,175 @@
-  
-  // ============================================================ Algolia and Search Modal
-  document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-    const nosearch = document.getElementById('nosearch');
-    const headerSearchBox = document.getElementById('headerSearchBox');
-  
-    const client = algoliasearch('QX9MQYMQ4D', 'edc43cd3cc2ceddc90b7eb276b3ccf1e');
-    const indexName = "output-frontend"
+document.addEventListener("DOMContentLoaded", () => {
 
-    function clearSearchInput() {
-      searchInput.value = '';
-      searchResults.innerHTML = '';
-      nosearch.innerHTML = "No recent searches"
-      nosearch.style.display = 'block';
-    }
-
-    function focusSearchInput() {
-        searchInput.focus();
-    }
+  const elementToModify = document.querySelector('.body.taskbody');
   
-    searchInput.addEventListener('input', async (event) => {
-      const query = event.target.value;
+  const noteElements = elementToModify.querySelectorAll(".note.alert.alert-info");
   
-      if (query.length > 0) {
-        nosearch.style.display = 'none';
-        const index = client.initIndex(indexName);
-        const { hits } = await index.search(query);
+  if (noteElements.length > 0) {
     
-        searchResults.innerHTML = '';
+    noteElements.forEach(element => {
+      
+      element.classList.remove('note', 'alert', 'alert-info');
+      
+      element.classList.add('bigNote');
+    });
+  }
+})
 
-        function decodeHtmlEntities(text) {
-          const parser = new DOMParser();
-          const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
-          return decodedString;
-        }
-        console.log(hits)
+document.addEventListener("DOMContentLoaded", () => {
+  const allATags = document.getElementById("sidebar_menulist");
+  const aa = allATags.querySelectorAll("a");
+  const currenthref = window.location.href;
 
-        if(hits.length === 0){
-          nosearch.style.display = 'block';
-          nosearch.innerHTML = `No results for <b>\"${query}\"</b>`
-        }
+  aa.forEach((atag) => {
+    
+    if (atag.href === currenthref) {
+      
+      let parentElement = atag;
+
+
+      parentElement = parentElement.parentElement;
+
+      parentElement.classList.add("activeBG")
+
+    }
+  })
+})
+
+
+// =============================================== For Home and Icon in left side menu
+// document.addEventListener("DOMContentLoaded", () => {
+//   let sidebar_menulist = document.getElementById("sidebar_menulist")
+
+//   var newItem = document.createElement("li");
+//   newItem.classList.add("list_style_border")
+
+//   var divElement = document.createElement("div");
+//   divElement.className = "d-flex flex-row sidebarMenuText";
+//   divElement.innerHTML = `
+//   <button data-bs-toggle="collapse" class="btn d-inline-flex align-items-center pe-0">
+//   <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" transform="scale(0.8)">
+//     <mask id="mask0_3_2825" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+//     <rect width="20" height="20" fill="#D9D9D9"/>
+//     </mask>
+//     <g mask="url(#mask0_3_2825)">
+//     <path d="M5.00004 15.8333H7.50004V10.8333H12.5V15.8333H15V8.33329L10 4.58329L5.00004 8.33329V15.8333ZM5.00004 17.5C4.54171 17.5 4.14935 17.3368 3.82296 17.0104C3.49657 16.684 3.33337 16.2916 3.33337 15.8333V8.33329C3.33337 8.0694 3.3924 7.8194 3.51046 7.58329C3.62851 7.34718 3.79171 7.15274 4.00004 6.99996L9.00004 3.24996C9.15282 3.13885 9.31254 3.05551 9.47921 2.99996C9.64587 2.9444 9.81948 2.91663 10 2.91663C10.1806 2.91663 10.3542 2.9444 10.5209 2.99996C10.6875 3.05551 10.8473 3.13885 11 3.24996L16 6.99996C16.2084 7.15274 16.3716 7.34718 16.4896 7.58329C16.6077 7.8194 16.6667 8.0694 16.6667 8.33329V15.8333C16.6667 16.2916 16.5035 16.684 16.1771 17.0104C15.8507 17.3368 15.4584 17.5 15 17.5H10.8334V12.5H9.16671V17.5H5.00004Z" fill="#69748C"/>
+//     </g>
+//   </svg>
+  
+//   </button>
+//   <a href="/" class="d-inline-flex align-items-center flex-shrink-1 ps-1" aria-expanded="false" aria-current="true">Home</a>
+// `;
+
+// newItem.appendChild(divElement)
+
+
+//   if (sidebar_menulist) {
+    
+//     sidebar_menulist.insertBefore(newItem, sidebar_menulist.firstChild);
+//   }
+
+// })
+
+
+
+
+  // // ============================================================ Algolia and Search Modal
+ 
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const searchInput = document.getElementById('search-input');
+  //   const searchResults = document.getElementById('search-results');
+  //   const nosearch = document.getElementById('nosearch');
+  //   const headerSearchBox = document.getElementById('headerSearchBox');
+  
+  //   const client = algoliasearch('QX9MQYMQ4D', 'edc43cd3cc2ceddc90b7eb276b3ccf1e');
+  //   const indexName = "output-frontend"
+
+  //   function clearSearchInput() {
+  //     searchInput.value = '';
+  //     searchResults.innerHTML = '';
+  //     nosearch.innerHTML = "No recent searches"
+  //     nosearch.style.display = 'block';
+  //   }
+
+  //   function focusSearchInput() {
+  //       searchInput.focus();
+  //   }
+  
+  //   searchInput.addEventListener('input', async (event) => {
+  //     const query = event.target.value;
+  
+  //     if (query.length > 0) {
+  //       nosearch.style.display = 'none';
+  //       const index = client.initIndex(indexName);
+  //       const { hits } = await index.search(query);
+    
+  //       searchResults.innerHTML = '';
+
+  //       function decodeHtmlEntities(text) {
+  //         const parser = new DOMParser();
+  //         const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
+  //         return decodedString;
+  //       }
+  //       console.log(hits)
+
+  //       if(hits.length === 0){
+  //         nosearch.style.display = 'block';
+  //         nosearch.innerHTML = `No results for <b>\"${query}\"</b>`
+  //       }
        
       
-        hits.forEach((hit) => {
-          // console.log(hit)
-          const resultItem = document.createElement('a');
-          resultItem.classList.add('card');
+  //       hits.forEach((hit) => {
+  //         // console.log(hit)
+  //         const resultItem = document.createElement('a');
+  //         resultItem.classList.add('card');
 
 
-          const cardBody = document.createElement('div');
-          cardBody.classList.add('card-body');
+  //         const cardBody = document.createElement('div');
+  //         cardBody.classList.add('card-body');
 
-          cardBody.style.whiteSpace = 'normal'; // Allow text to wrap
-          cardBody.style.overflow = 'hidden'; // Hide any overflow
-          cardBody.style.textOverflow = 'ellipsis'; // Add ellipsis if text overflows
-          cardBody.style.width = '100%';
+  //         cardBody.style.whiteSpace = 'normal'; // Allow text to wrap
+  //         cardBody.style.overflow = 'hidden'; // Hide any overflow
+  //         cardBody.style.textOverflow = 'ellipsis'; // Add ellipsis if text overflows
+  //         cardBody.style.width = '100%';
           
-          resultItem.href = hit.url;
-          // cardBody.textContent = decodeHtmlEntities(hit._highlightResult.hierarchy.lvl1.value); 
+  //         resultItem.href = hit.url;
+  //         // cardBody.textContent = decodeHtmlEntities(hit._highlightResult.hierarchy.lvl1.value); 
 
           
-          if (hit._snippetResult && hit._snippetResult.content) {
-            const highlightedContent = hit._snippetResult.content.value;
-            cardBody.innerHTML = highlightedContent;
-          } else {          
-            cardBody.textContent = decodeHtmlEntities(hit._highlightResult.hierarchy.lvl1.value); 
-          }
+  //         if (hit._snippetResult && hit._snippetResult.content) {
+  //           const highlightedContent = hit._snippetResult.content.value;
+  //           cardBody.innerHTML = highlightedContent;
+  //         } else {          
+  //           cardBody.textContent = decodeHtmlEntities(hit._highlightResult.hierarchy.lvl1.value); 
+  //         }
 
     
-          resultItem.appendChild(cardBody);
+  //         resultItem.appendChild(cardBody);
 
-          resultItem.addEventListener('click', () => {
-            modal.hide();
-          });
-          searchResults.appendChild(resultItem);
-        });
-      } else {
-        searchResults.innerHTML = ''; 
+  //         resultItem.addEventListener('click', () => {
+  //           modal.hide();
+  //         });
+  //         searchResults.appendChild(resultItem);
+  //       });
+  //     } else {
+  //       searchResults.innerHTML = ''; 
 
-        nosearch.style.display = 'block';
-        nosearch.innerHTML = "No recent searches"
+  //       nosearch.style.display = 'block';
+  //       nosearch.innerHTML = "No recent searches"
         
-      }
-    });
+  //     }
+  //   });
      
   
    
-    const modal = new bootstrap.Modal(document.getElementById('searchBoxModal'));
-    modal._element.addEventListener('hidden.bs.modal', clearSearchInput);
+  //   const modal = new bootstrap.Modal(document.getElementById('searchBoxModal'));
+  //   modal._element.addEventListener('hidden.bs.modal', clearSearchInput);
 
-     modal._element.addEventListener('shown.bs.modal', () => {
-      headerSearchBox.blur(); 
-      focusSearchInput();
-    });
-  });
+  //    modal._element.addEventListener('shown.bs.modal', () => {
+  //     headerSearchBox.blur(); 
+  //     focusSearchInput();
+  //   });
+  // });
   
 
 
@@ -111,7 +186,7 @@ window.addEventListener("load", () => {
     if (Url == activeUrl) {
       // aTag.style.color = "#1E8B94";
       aTag.style.color = "#000";
-      aTag.style.fontWeight = "bold";
+      // aTag.style.fontWeight = "bold";
     }
   });
 });
@@ -181,7 +256,7 @@ function getTagsForTOC(element) {
 const addLastChildOfMain = (allTags) => {
   //   console.log("inadd");
   let innerText = `
-        <div class="bs-scrollspy mt-3 mb-5 my-lg-0 mb-lg-5 px-sm-1 text-body-secondary ignore-this"><span class="onThisTopic">ON THIS TOPIC</span>
+        <div class="bs-scrollspy mt-3 mb-5 mb-lg-5 px-sm-1 text-body-secondary ignore-this"><span class="onThisTopic">ON THIS PAGE</span>
         <nav>
         <div data-spy="scroll" data-target="#navbar-example3" data-offset="0" id="scrollTagDiv">
         `;
@@ -410,6 +485,8 @@ window.onload = function() {
       const headerElement = document.querySelector('#mainHeader').cloneNode(true);
       const articleElement = document.querySelector('article').cloneNode(true);
 
+      // let logo = document.querySelector(".navbar-brand")
+
       const elementsToIgnore = articleElement.querySelectorAll('.ignore-this');
       elementsToIgnore.forEach(function(element) {
         element.remove();
@@ -623,7 +700,6 @@ function printPage() {
   window.scrollTo(0, 0);
 
   setTimeout(() => {
-    console.log("triggered")
 
   let elementsToHide = document.querySelectorAll('.no-print');
   elementsToHide.forEach(function(element) {
@@ -713,4 +789,83 @@ function printPage() {
 //     html2pdf().from(combinedElement).set(options).save('page.pdf');
 //   });
 // };
+
+
+
+// ============================================================================================
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const previousBtn = document.getElementById("previousBtn")
+  const nextBtn = document.getElementById("nextBtn")
+
+  const allATags = document.getElementById("sidebar_menulist");
+  const aa = allATags.querySelectorAll("a");
+  const currenthref = window.location.href;
+
+
+  aa.forEach((atag) => {
+    
+    if (atag.href === currenthref) {
+      
+      let parentElement = atag;
+
+      
+      while (parentElement && parentElement.tagName !== "LI") {
+        parentElement = parentElement.parentElement;
+      }
+
+      if (parentElement && parentElement.tagName === "LI") {
+
+        const previousSibling = parentElement.previousElementSibling;
+        const nextSibling = parentElement.nextElementSibling;
+
+        if (previousSibling) {
+          const preATagHref = previousSibling.querySelectorAll("a")[0].href
+
+          const arrLen = preATagHref.split("/")[preATagHref.split("/").length - 1].replace(".html", "").replaceAll("_", " ")
+          const dot = arrLen.length > 30 ? "..." : "" 
+          previousBtn.innerHTML = `
+          <a href="${preATagHref}" class="previous d-flex">
+            <div class="arrowIcon me-3 d-none d-md-block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+              </svg>
+            </div>
+            <div class="btnText d-flex flex-column">
+              <span>PREVIOUS</span>
+              ${arrLen.slice(0, 30)} ${dot}
+            </div>
+        </a> 
+          `
+        } else {
+          console.log("No Previous Sibling");
+        }
+
+
+        if (nextSibling) {
+        const nextATagHref = nextSibling.querySelectorAll("a")[0].href
+        const arrLen = nextATagHref.split("/")[nextATagHref.split("/").length - 1].replace(".html", "").replaceAll("_", " ")
+        const dot = arrLen.length > 30 ? "..." : "" 
+
+        nextBtn.innerHTML = `
+            <a href="${nextATagHref}" class="next d-flex">   
+                <div class="btnText d-flex align-items-end text-end flex-column">
+                  <span>NEXT</span>
+                  ${arrLen.slice(0, 30)}${dot}
+                </div>
+                <div class="arrowIcon ms-3 d-none d-md-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                  </svg>
+                </div>
+            </a>
+              `
+        } else {
+          console.log("No Next Sibling");
+        }
+      } 
+    }
+  });
+});
 

@@ -1,110 +1,520 @@
 document.addEventListener("DOMContentLoaded", () => {
-    var toggler = document.getElementsByClassName("caret");
-    var i;
-    
-    for (i = 0; i < toggler.length; i++) {
+  const ulElement = document.querySelector('.map');
+  const allLiElements = ulElement.querySelectorAll('li');
+  const landing__card = document.getElementById("landing__card");
+  const bigCardText = document.getElementById("bigCardText");
+  const menu__wrapper = document.querySelector(".menu__wrapper")
+  const mainCategoryFistTime = document.querySelector(".mainCategoryFistTime")
+
+
+
+  const liElements = Array.from(allLiElements).filter((liElement) => {
+    return liElement.parentElement === ulElement;
+  });
+
+  let clickedIndex = 0;
+
+  const colElement = document.createElement('li');
+  colElement.className = 'topicref topichead';
+
+  // Function to attach accordion listeners
+  function attachAccordionListeners() {
+    const toggler = colElement.getElementsByClassName("caret");
+    for (let i = 0; i < toggler.length; i++) {
       toggler[i].addEventListener("click", function() {
         this.parentElement.querySelector(".nested").classList.toggle("tocActive");
         this.classList.toggle("caret-down");
       });
     }
+  }
+
+
+  const updateBigCard = () => {
+    colElement.innerHTML = liElements[clickedIndex].innerHTML;
+    // attachAccordionListeners(); 
+  };
+
+  liElements.forEach((liElement, index) => {
+        const divElement = liElement.querySelector('div');
+
+    
+    divElement.setAttribute('id', divElement.innerText.trim().replace(/\s/g, ""));
+
+    const h5Element = document.createElement('h6');
+    h5Element.className = 'card-title landingCardTitle d-flex align-items-center';
+
+    const titleSpan = document.createElement('span');
+    titleSpan.className = 'card_span';
+
+    const svgSpan = document.createElement('span');
+    svgSpan.className = 'svgSpan';
+
+
+    
+    const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svgElement.setAttribute("width", "20");
+    svgElement.setAttribute("height", "21");
+    svgElement.setAttribute("viewBox", "0 0 25 26");
+    svgElement.setAttribute("fill", "none");
+
+
+    const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    pathElement.setAttribute("d", "M11.25 15.2867H13.75C14.1042 15.2867 14.401 15.1695 14.6406 14.9348C14.8803 14.7003 15 14.4096 15 14.0629C15 13.7162 14.8803 13.4256 14.6406 13.1909C14.401 12.9564 14.1042 12.8391 13.75 12.8391H11.25C10.8958 12.8391 10.599 12.9564 10.3594 13.1909C10.1198 13.4256 9.99999 13.7162 9.99999 14.0629C9.99999 14.4096 10.1198 14.7003 10.3594 14.9348C10.599 15.1695 10.8958 15.2867 11.25 15.2867ZM11.25 11.6154H18.75C19.1041 11.6154 19.4011 11.4981 19.6407 11.2635C19.8802 11.029 20.0001 10.7383 20.0001 10.3916C20.0001 10.0448 19.8802 9.75421 19.6407 9.51964C19.4011 9.28509 19.1041 9.16781 18.75 9.16781H11.25C10.8958 9.16781 10.599 9.28509 10.3594 9.51964C10.1198 9.75421 9.99999 10.0448 9.99999 10.3916C9.99999 10.7383 10.1198 11.029 10.3594 11.2635C10.599 11.4981 10.8958 11.6154 11.25 11.6154ZM11.25 7.94404H18.75C19.1041 7.94404 19.4011 7.82676 19.6407 7.59219C19.8802 7.35764 20.0001 7.06699 20.0001 6.72025C20.0001 6.37352 19.8802 6.08287 19.6407 5.84831C19.4011 5.61376 19.1041 5.49648 18.75 5.49648H11.25C10.8958 5.49648 10.599 5.61376 10.3594 5.84831C10.1198 6.08287 9.99999 6.37352 9.99999 6.72025C9.99999 7.06699 10.1198 7.35764 10.3594 7.59219C10.599 7.82676 10.8958 7.94404 11.25 7.94404ZM7.5 20.1819C6.81249 20.1819 6.22395 19.9422 5.73436 19.4629C5.24478 18.9835 4.99999 18.4073 4.99999 17.7343V3.04892C4.99999 2.37585 5.24478 1.79966 5.73436 1.32034C6.22395 0.841029 6.81249 0.601379 7.5 0.601379H22.5C23.1876 0.601379 23.776 0.841029 24.2656 1.32034C24.7552 1.79966 25 2.37585 25 3.04892V17.7343C25 18.4073 24.7552 18.9835 24.2656 19.4629C23.776 19.9422 23.1876 20.1819 22.5 20.1819H7.5ZM7.5 17.7343H22.5V3.04892H7.5V17.7343ZM2.49999 25.0769C1.81249 25.0769 1.22395 24.8373 0.73437 24.3579C0.244785 23.8786 0 23.3025 0 22.6293V6.72025C0 6.37352 0.11979 6.08287 0.35937 5.84831C0.59895 5.61376 0.89583 5.49648 1.24999 5.49648C1.60416 5.49648 1.90104 5.61376 2.14062 5.84831C2.3802 6.08287 2.49999 6.37352 2.49999 6.72025V22.6293H18.75C19.1041 22.6293 19.4011 22.7467 19.6407 22.9812C19.8802 23.2157 20.0001 23.5063 20.0001 23.8532C20.0001 24.1999 19.8802 24.4905 19.6407 24.7251C19.4011 24.9596 19.1041 25.0769 18.75 25.0769H2.49999Z");
+    pathElement.setAttribute("fill", "#12636A");
+    
+
+
+    svgElement.appendChild(pathElement);
+
+    svgSpan.appendChild(svgElement);
+    h5Element.appendChild(svgSpan);
+    titleSpan.appendChild(document.createTextNode(divElement.innerText));
+    h5Element.appendChild(titleSpan);
+
+    const cardBodyElement = document.createElement('div');
+    cardBodyElement.className = 'card-body d-flex align-items-center';
+    cardBodyElement.appendChild(h5Element);
+
+    const cardElement = document.createElement('div');
+    cardElement.className = 'card';
+    cardElement.appendChild(cardBodyElement);
+
+    const colElement = document.createElement('div');
+    colElement.className = 'col';
+    colElement.appendChild(cardElement);
+
+    landing__card.appendChild(colElement);
+
+
+    colElement.addEventListener('click', function() {
+      const cardTitleElement = this.querySelector('.card-title');
+
+      if (cardTitleElement) {   
+        menu__wrapper.classList.remove("hidecard") 
+        mainCategoryFistTime.classList.add("hidecard")
+        clickedIndex = index;
+        updateBigCard();
+        // const cc = bigCardText.querySelector(".caret")
+        // const nn = bigCardText.querySelector(".nested")
+        // cc.classList.add("caret-down")
+        // nn.classList.add("tocActive")
+
+        const firsTimeCategory = document.querySelector("#bigCardText .map")
+        const nested = firsTimeCategory.querySelectorAll(".nested")
+        nested.forEach((div) => {
+          div.classList.add("tocActive")
+        })
+      }
+    });
+  });
+
+  // Initial setup
+  updateBigCard();
+
+
+  const cardElement = document.createElement('ul');
+  cardElement.className = 'map';
+
+  cardElement.appendChild(colElement);
+  bigCardText.appendChild(cardElement);
+
+  const gg = document.querySelector("#bigCardText");
+  const menuIcons = gg.querySelector(".menu__icon");
+  menuIcons.classList.add("Hidemenu__icon")
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  var acc = document.getElementsByClassName("LandingAccordion");
+  var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("LandingActive");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+      } 
+    });
+  }
 })
 
 
+
+document.addEventListener("DOMContentLoaded", () => {
+  var toggler = document.getElementsByClassName("caret");
+  var i;
+  
+  // console.log(toggler)
+
+  for (i = 0; i < toggler.length; i++) {
+    toggler[i].addEventListener("click", function() {
+      
+      this.parentElement.querySelector(".nested").classList.toggle("tocActive");
+      this.classList.toggle("caret-down");
+    });
+  }
+})
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const ulElement = document.querySelectorAll('.map > .topicref.topichead > div.caret');
+  const leftSmallCard = document.getElementById("leftSmallCard");
+  const smallCards = leftSmallCard.querySelectorAll(".smallCard");
+  const cardTitle = leftSmallCard.querySelectorAll(".smallCard .cardTitle");
+  const content_wrapper = document.querySelector(".content_wrapper")
+  const rightCardContent__wrapper = document.querySelector(".rightCardContent__wrapper")
+  const cardButtonWrapper = document.querySelector(".cardButtonWrapper")
+  const mainCategoryFistTime = document.querySelector(".mainCategoryFistTime")
+  const mainCategoryFistTimeMap = document.querySelector(".mainCategoryFistTime .map")
+
+  const mapp = document.querySelector('.map');
+  const allLiElements = mapp.querySelectorAll('li');
+
+  const liElements = Array.from(allLiElements).filter((liElement) => {
+    return liElement.parentElement === mapp;
+  });
+
+  
+  for (let i = 0; i < cardTitle.length; i++) {
+    cardTitle[i].innerText = ulElement[i].innerText;
+
+    smallCards[i].addEventListener("click", () => {
+
+      console.log(`Clicked card ${i} index number`);
+      content_wrapper.classList.add("d-none")
+      rightCardContent__wrapper.classList.add("d-none")
+
+      cardButtonWrapper.classList.remove("hidecard")
+      mainCategoryFistTime.classList.remove("hidecard")
+      
+      mainCategoryFistTimeMap.innerHTML = liElements[i].innerHTML;
+      const firsTimeCategory = document.querySelector("#firsTimeCategory")
+      const nested = firsTimeCategory.querySelectorAll(".nested")
+      nested.forEach((div) => {
+        div.classList.add("tocActive")
+      })
+    });
+  }
+});
+
+
+
+
+
+// =============================================== For Home and Icon in left side menu
+// document.addEventListener("DOMContentLoaded", () => {
+//   let sidebar_menulist = document.getElementById("sidebar_menulist")
+
+//   var newItem = document.createElement("li");
+//   newItem.classList.add("topicref")
+//   newItem.classList.add("topichead")
+
+//   newItem.innerHTML = `
+//   <span class="caret d-flex ">
+//   <svg class="menu__icon" width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" transform="scale(0.8)">
+//     <mask id="mask0_3_2825" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+//     <rect width="20" height="20" fill="#D9D9D9"/>
+//     </mask>
+//     <g mask="url(#mask0_3_2825)">
+//     <path d="M5.00004 15.8333H7.50004V10.8333H12.5V15.8333H15V8.33329L10 4.58329L5.00004 8.33329V15.8333ZM5.00004 17.5C4.54171 17.5 4.14935 17.3368 3.82296 17.0104C3.49657 16.684 3.33337 16.2916 3.33337 15.8333V8.33329C3.33337 8.0694 3.3924 7.8194 3.51046 7.58329C3.62851 7.34718 3.79171 7.15274 4.00004 6.99996L9.00004 3.24996C9.15282 3.13885 9.31254 3.05551 9.47921 2.99996C9.64587 2.9444 9.81948 2.91663 10 2.91663C10.1806 2.91663 10.3542 2.9444 10.5209 2.99996C10.6875 3.05551 10.8473 3.13885 11 3.24996L16 6.99996C16.2084 7.15274 16.3716 7.34718 16.4896 7.58329C16.6077 7.8194 16.6667 8.0694 16.6667 8.33329V15.8333C16.6667 16.2916 16.5035 16.684 16.1771 17.0104C15.8507 17.3368 15.4584 17.5 15 17.5H10.8334V12.5H9.16671V17.5H5.00004Z" fill="#69748C"/>
+//     </g>
+//   </svg>
+//   <a href="/">Home</a>
+//   </span>
+  
+  
+// `;
+
+//   if (sidebar_menulist) {
+//     sidebar_menulist.insertBefore(newItem, sidebar_menulist.firstChild);
+//   }
+// })
+
+
+
+
+
   // ============================================================ Algolia and Search Modal
-  document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-    const nosearch = document.getElementById('nosearch');
-    const headerSearchBox = document.getElementById('headerSearchBox');
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const searchInput = document.getElementById('search-input');
+  //   const searchResults = document.getElementById('search-results');
+  //   const nosearch = document.getElementById('nosearch');
+  //   const headerSearchBox = document.getElementById('headerSearchBox');
   
-    const client = algoliasearch('QX9MQYMQ4D', 'edc43cd3cc2ceddc90b7eb276b3ccf1e');
-    const indexName = "output-frontend"
+  //   const client = algoliasearch('QX9MQYMQ4D', 'edc43cd3cc2ceddc90b7eb276b3ccf1e');
+  //   const indexName = "output-frontend"
 
-    function clearSearchInput() {
-      searchInput.value = '';
-      searchResults.innerHTML = '';
-      nosearch.innerHTML = "No recent searches"
-      nosearch.style.display = 'block';
-    }
+  //   function clearSearchInput() {
+  //     searchInput.value = '';
+  //     searchResults.innerHTML = '';
+  //     nosearch.innerHTML = "No recent searches"
+  //     nosearch.style.display = 'block';
+  //   }
 
-    function focusSearchInput() {
-        searchInput.focus();
-    }
+  //   function focusSearchInput() {
+  //       searchInput.focus();
+  //   }
   
-    searchInput.addEventListener('input', async (event) => {
-      const query = event.target.value;
+  //   searchInput.addEventListener('input', async (event) => {
+  //     const query = event.target.value;
   
-      if (query.length > 0) {
-        nosearch.style.display = 'none';
-        const index = client.initIndex(indexName);
-        const { hits } = await index.search(query);
+  //     if (query.length > 0) {
+  //       nosearch.style.display = 'none';
+  //       const index = client.initIndex(indexName);
+  //       const { hits } = await index.search(query);
     
-        searchResults.innerHTML = '';
+  //       searchResults.innerHTML = '';
 
-        function decodeHtmlEntities(text) {
-          const parser = new DOMParser();
-          const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
-          return decodedString;
-        }
-        console.log(hits)
+  //       function decodeHtmlEntities(text) {
+  //         const parser = new DOMParser();
+  //         const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
+  //         return decodedString;
+  //       }
+  //       // console.log(hits)
 
-        if(hits.length === 0){
-          nosearch.style.display = 'block';
-          nosearch.innerHTML = `No results for <b>\"${query}\"</b>`
-        }
+  //       if(hits.length === 0){
+  //         nosearch.style.display = 'block';
+  //         nosearch.innerHTML = `No results for <b>\"${query}\"</b>`
+  //       }
        
       
-        hits.forEach((hit) => {
-          // console.log(hit)
-          const resultItem = document.createElement('a');
-          resultItem.classList.add('card');
+  //       hits.forEach((hit) => {
+  //         // console.log(hit)
+  //         const resultItem = document.createElement('a');
+  //         resultItem.classList.add('card');
 
 
-          const cardBody = document.createElement('div');
-          cardBody.classList.add('card-body');
+  //         const cardBody = document.createElement('div');
+  //         cardBody.classList.add('card-body');
 
-          cardBody.style.whiteSpace = 'normal'; // Allow text to wrap
-          cardBody.style.overflow = 'hidden'; // Hide any overflow
-          cardBody.style.textOverflow = 'ellipsis'; // Add ellipsis if text overflows
-          cardBody.style.width = '100%';
+  //         cardBody.style.whiteSpace = 'normal'; // Allow text to wrap
+  //         cardBody.style.overflow = 'hidden'; // Hide any overflow
+  //         cardBody.style.textOverflow = 'ellipsis'; // Add ellipsis if text overflows
+  //         cardBody.style.width = '100%';
           
-          resultItem.href = hit.url;
-          // cardBody.textContent = decodeHtmlEntities(hit._highlightResult.hierarchy.lvl1.value); 
+  //         resultItem.href = hit.url;
+  //         // cardBody.textContent = decodeHtmlEntities(hit._highlightResult.hierarchy.lvl1.value); 
 
           
-          if (hit._snippetResult && hit._snippetResult.content) {
-            const highlightedContent = hit._snippetResult.content.value;
-            cardBody.innerHTML = highlightedContent;
-          } else {          
-            cardBody.textContent = decodeHtmlEntities(hit._highlightResult.hierarchy.lvl1.value); 
-          }
+  //         if (hit._snippetResult && hit._snippetResult.content) {
+  //           const highlightedContent = hit._snippetResult.content.value;
+  //           cardBody.innerHTML = highlightedContent;
+  //         } else {          
+  //           cardBody.textContent = decodeHtmlEntities(hit._highlightResult.hierarchy.lvl1.value); 
+  //         }
 
     
-          resultItem.appendChild(cardBody);
+  //         resultItem.appendChild(cardBody);
 
-          resultItem.addEventListener('click', () => {
-            modal.hide();
-          });
-          searchResults.appendChild(resultItem);
-        });
-      } else {
-        searchResults.innerHTML = ''; 
+  //         resultItem.addEventListener('click', () => {
+  //           modal.hide();
+  //         });
+  //         searchResults.appendChild(resultItem);
+  //       });
+  //     } else {
+  //       searchResults.innerHTML = ''; 
 
-        nosearch.style.display = 'block';
-        nosearch.innerHTML = "No recent searches"
+  //       nosearch.style.display = 'block';
+  //       nosearch.innerHTML = "No recent searches"
         
-      }
-    });
+  //     }
+  //   });
      
   
    
-    const modal = new bootstrap.Modal(document.getElementById('searchBoxModal'));
-    modal._element.addEventListener('hidden.bs.modal', clearSearchInput);
+  //   const modal = new bootstrap.Modal(document.getElementById('searchBoxModal'));
+  //   modal._element.addEventListener('hidden.bs.modal', clearSearchInput);
 
-     modal._element.addEventListener('shown.bs.modal', () => {
-      headerSearchBox.blur(); 
-      focusSearchInput();
-    });
-  });
+  //    modal._element.addEventListener('shown.bs.modal', () => {
+  //     headerSearchBox.blur(); 
+  //     focusSearchInput();
+  //   });
+  // });
   
+
+
+  // ================================================================= Landing page cards
+
+//   document.addEventListener("DOMContentLoaded", () => {
+
+//     const ulElement = document.querySelector('.map');
+//     const allLiElements = ulElement.querySelectorAll('li');
+//     const landing__card = document.getElementById("landing__card")
+   
+
+//     const liElements = Array.from(allLiElements).filter((liElement) => {
+//       return liElement.parentElement === ulElement;
+//     });
+
+//     liElements.forEach((liElement) => {
+//       const divElement = liElement.querySelector('div');
+//       console.log(divElement)
+
+//       // Id added to all parent list 
+//       divElement.setAttribute('id', divElement.innerText.trim().replace(/\s/g, ""));
+//       // console.log(divElement)
+
+
+//         const h5Element = document.createElement('h6');
+//         h5Element.className = 'card-title';
+//         h5Element.innerText = divElement.innerText;
+
+  
+//         const cardBodyElement = document.createElement('div');
+//         cardBodyElement.className = 'card-body';
+//         cardBodyElement.appendChild(h5Element);
+
+        
+//         const cardElement = document.createElement('div');
+//         cardElement.className = 'card';
+//         cardElement.appendChild(cardBodyElement);
+
+
+//         const colElement = document.createElement('div');
+//         colElement.className = 'col';
+//         colElement.appendChild(cardElement);
+
+       
+//         landing__card.appendChild(colElement); 
+
+              
+
+//         colElement.addEventListener('click', function(e) {
+//         console.log('Col element was clicked!');
+//         const cardTitleElement = this.querySelector('.card-title');
+        
+//         if (cardTitleElement) {
+//           const cardTitleText = cardTitleElement.textContent;
+//           let cardId = cardTitleText.trim().replace(/\s/g, "")
+//           console.log('Clicked card title:', cardId);
+//         }
+//       });
+
+//     });
+
+
+//     // big card data
+//     const bigCardText = document.getElementById("bigCardText")
+//     const htmlContent = liElements[0].innerHTML
+    
+//     const colElement = document.createElement('li');
+//     colElement.className = 'topicref topichead';
+//     colElement.innerHTML = htmlContent;
+
+
+//     const cardElement = document.createElement('ul');
+//     cardElement.className = 'map';
+
+//     cardElement.appendChild(colElement);
+//     bigCardText.appendChild(cardElement);
+
+// })
+// =====================================================================================================
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const ulElement = document.querySelector('.map');
+//   const allLiElements = ulElement.querySelectorAll('li');
+//   const landing__card = document.getElementById("landing__card");
+//   const bigCardText = document.getElementById("bigCardText")
+
+//   var toggler = bigCardText.getElementsByClassName("caret");
+//   var i;
+
+//   const liElements = Array.from(allLiElements).filter((liElement) => {
+//     return liElement.parentElement === ulElement;
+//   });
+
+//   let clickedIndex = 0;
+
+//    // big card data
+//    const colElement = document.createElement('li');
+//    colElement.className = 'topicref topichead';
+
+//    function attachAccordionListeners() {
+//     for (i = 0; i < toggler.length; i++) {
+//       toggler[i].addEventListener("click", function() {
+//         this.parentElement.querySelector(".nested").classList.toggle("tocActive");
+//         this.classList.toggle("caret-down");
+//       });
+//     }
+//   }
+
+//   attachAccordionListeners();
+
+//    const updateBigCard = () => {
+//      colElement.innerHTML = liElements[clickedIndex].innerHTML;
+//      toggler = colElement.getElementsByClassName("caret");
+//      attachAccordionListeners();
+//    };
+
+//   liElements.forEach((liElement, index) => { // Add 'index' parameter
+//     const divElement = liElement.querySelector('div');
+
+    
+//     divElement.setAttribute('id', divElement.innerText.trim().replace(/\s/g, ""));
+
+//     const h5Element = document.createElement('h6');
+//     h5Element.className = 'card-title landingCardTitle';
+
+    
+//     const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+//     svgElement.setAttribute("width", "20");
+//     svgElement.setAttribute("height", "21");
+//     svgElement.setAttribute("viewBox", "0 0 25 26");
+//     svgElement.setAttribute("fill", "none");
+
+
+//     const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+//     pathElement.setAttribute("d", "M11.25 15.2867H13.75C14.1042 15.2867 14.401 15.1695 14.6406 14.9348C14.8803 14.7003 15 14.4096 15 14.0629C15 13.7162 14.8803 13.4256 14.6406 13.1909C14.401 12.9564 14.1042 12.8391 13.75 12.8391H11.25C10.8958 12.8391 10.599 12.9564 10.3594 13.1909C10.1198 13.4256 9.99999 13.7162 9.99999 14.0629C9.99999 14.4096 10.1198 14.7003 10.3594 14.9348C10.599 15.1695 10.8958 15.2867 11.25 15.2867ZM11.25 11.6154H18.75C19.1041 11.6154 19.4011 11.4981 19.6407 11.2635C19.8802 11.029 20.0001 10.7383 20.0001 10.3916C20.0001 10.0448 19.8802 9.75421 19.6407 9.51964C19.4011 9.28509 19.1041 9.16781 18.75 9.16781H11.25C10.8958 9.16781 10.599 9.28509 10.3594 9.51964C10.1198 9.75421 9.99999 10.0448 9.99999 10.3916C9.99999 10.7383 10.1198 11.029 10.3594 11.2635C10.599 11.4981 10.8958 11.6154 11.25 11.6154ZM11.25 7.94404H18.75C19.1041 7.94404 19.4011 7.82676 19.6407 7.59219C19.8802 7.35764 20.0001 7.06699 20.0001 6.72025C20.0001 6.37352 19.8802 6.08287 19.6407 5.84831C19.4011 5.61376 19.1041 5.49648 18.75 5.49648H11.25C10.8958 5.49648 10.599 5.61376 10.3594 5.84831C10.1198 6.08287 9.99999 6.37352 9.99999 6.72025C9.99999 7.06699 10.1198 7.35764 10.3594 7.59219C10.599 7.82676 10.8958 7.94404 11.25 7.94404ZM7.5 20.1819C6.81249 20.1819 6.22395 19.9422 5.73436 19.4629C5.24478 18.9835 4.99999 18.4073 4.99999 17.7343V3.04892C4.99999 2.37585 5.24478 1.79966 5.73436 1.32034C6.22395 0.841029 6.81249 0.601379 7.5 0.601379H22.5C23.1876 0.601379 23.776 0.841029 24.2656 1.32034C24.7552 1.79966 25 2.37585 25 3.04892V17.7343C25 18.4073 24.7552 18.9835 24.2656 19.4629C23.776 19.9422 23.1876 20.1819 22.5 20.1819H7.5ZM7.5 17.7343H22.5V3.04892H7.5V17.7343ZM2.49999 25.0769C1.81249 25.0769 1.22395 24.8373 0.73437 24.3579C0.244785 23.8786 0 23.3025 0 22.6293V6.72025C0 6.37352 0.11979 6.08287 0.35937 5.84831C0.59895 5.61376 0.89583 5.49648 1.24999 5.49648C1.60416 5.49648 1.90104 5.61376 2.14062 5.84831C2.3802 6.08287 2.49999 6.37352 2.49999 6.72025V22.6293H18.75C19.1041 22.6293 19.4011 22.7467 19.6407 22.9812C19.8802 23.2157 20.0001 23.5063 20.0001 23.8532C20.0001 24.1999 19.8802 24.4905 19.6407 24.7251C19.4011 24.9596 19.1041 25.0769 18.75 25.0769H2.49999Z");
+//     pathElement.setAttribute("fill", "#4381CC");
+    
+
+
+//     svgElement.appendChild(pathElement);
+
+//     h5Element.appendChild(svgElement);
+//     h5Element.appendChild(document.createTextNode(divElement.innerText));
+
+//     const cardBodyElement = document.createElement('div');
+//     cardBodyElement.className = 'card-body';
+//     cardBodyElement.appendChild(h5Element);
+
+//     const cardElement = document.createElement('div');
+//     cardElement.className = 'card';
+//     cardElement.appendChild(cardBodyElement);
+
+//     const colElement = document.createElement('div');
+//     colElement.className = 'col';
+//     colElement.appendChild(cardElement);
+
+//     landing__card.appendChild(colElement);
+
+    
+
+//     colElement.addEventListener('click', function() {
+//       const cardTitleElement = this.querySelector('.card-title');
+
+//       if (cardTitleElement) {
+//         console.log('Clicked card index:', index);
+//         clickedIndex = index;
+//         updateBigCard(); 
+//       }
+//     });
+//   });
+
+    
+      
+//     // Initial setup
+//     updateBigCard();
+
+//     const cardElement = document.createElement('ul');
+//     cardElement.className = 'map';
+
+//     cardElement.appendChild(colElement);
+//     bigCardText.appendChild(cardElement);
+// });

@@ -128,6 +128,8 @@
   gap: 1.5rem;
   grid-template-areas: 'sidebar main';
   grid-template-columns: 2fr 7fr;
+  /* grid-template-columns: 2.5fr 7fr; */
+  /* grid-template-columns:  22% 80%; */
 }
 
 .bs-sidebar {
