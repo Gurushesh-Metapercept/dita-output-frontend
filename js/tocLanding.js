@@ -1,3 +1,110 @@
+// document.addEventListener("DOMContentLoaded", () => {
+//   const pageTitle = document.title;
+//   const tocPageHeading = document.getElementById("tocPageHeading")
+
+//   tocPageHeading.innerText = pageTitle
+  
+//   const iconAndTitle = document.querySelectorAll("#myUL > ul.map > li > div.caret > .iconAndTitle")
+
+//   const imgPath = [
+//     "./images/Library.svg",
+//     "./images/EnterpriseManagement.svg",
+//     "./images/CommonApplicationFeatures.svg",
+//     "./images/FundManagement.svg",
+//     "./images/ContractManagement.svg",
+//     "./images/PlanningManagement.svg",
+//   ]
+
+  
+
+//   iconAndTitle.forEach((li, index) => {
+//     const imgElement = document.createElement("img");
+//     imgElement.src = imgPath[index]; 
+//     li.insertBefore(imgElement, li.firstChild);
+//   });
+  
+// })
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const pageTitle = document.title;
+  const tocPageHeading = document.getElementById("tocPageHeading")
+
+  tocPageHeading.innerText = pageTitle
+
+  const iconAndTitle = document.querySelectorAll("#myUL > ul.map > li > div.caret > .iconAndTitle")
+  const iconAndTitle2 = document.querySelectorAll("#myUL2 > ul.map > li > div.caret > .iconAndTitle")
+  
+  const pathArr = [
+     `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <mask id="mask0_3_2860" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+     <rect width="20" height="20" fill="#12636A"/>
+     </mask>
+     <g mask="url(#mask0_3_2860)">
+     <path d="M9.16663 11.6666H10.8333C11.0694 11.6666 11.2673 11.5868 11.427 11.427C11.5868 11.2673 11.6666 11.0694 11.6666 10.8333C11.6666 10.5972 11.5868 10.3993 11.427 10.2395C11.2673 10.0798 11.0694 9.99996 10.8333 9.99996H9.16663C8.93052 9.99996 8.7326 10.0798 8.57288 10.2395C8.41315 10.3993 8.33329 10.5972 8.33329 10.8333C8.33329 11.0694 8.41315 11.2673 8.57288 11.427C8.7326 11.5868 8.93052 11.6666 9.16663 11.6666ZM9.16663 9.16663H14.1666C14.4027 9.16663 14.6007 9.08677 14.7604 8.92704C14.9201 8.76732 15 8.5694 15 8.33329C15 8.09718 14.9201 7.89927 14.7604 7.73954C14.6007 7.57982 14.4027 7.49996 14.1666 7.49996H9.16663C8.93052 7.49996 8.7326 7.57982 8.57288 7.73954C8.41315 7.89927 8.33329 8.09718 8.33329 8.33329C8.33329 8.5694 8.41315 8.76732 8.57288 8.92704C8.7326 9.08677 8.93052 9.16663 9.16663 9.16663ZM9.16663 6.66663H14.1666C14.4027 6.66663 14.6007 6.58677 14.7604 6.42704C14.9201 6.26732 15 6.0694 15 5.83329C15 5.59718 14.9201 5.39926 14.7604 5.23954C14.6007 5.07982 14.4027 4.99996 14.1666 4.99996H9.16663C8.93052 4.99996 8.7326 5.07982 8.57288 5.23954C8.41315 5.39926 8.33329 5.59718 8.33329 5.83329C8.33329 6.0694 8.41315 6.26732 8.57288 6.42704C8.7326 6.58677 8.93052 6.66663 9.16663 6.66663ZM6.66663 15C6.20829 15 5.81593 14.8368 5.48954 14.5104C5.16315 14.184 4.99996 13.7916 4.99996 13.3333V3.33329C4.99996 2.87496 5.16315 2.4826 5.48954 2.15621C5.81593 1.82982 6.20829 1.66663 6.66663 1.66663H16.6666C17.125 1.66663 17.5173 1.82982 17.8437 2.15621C18.1701 2.4826 18.3333 2.87496 18.3333 3.33329V13.3333C18.3333 13.7916 18.1701 14.184 17.8437 14.5104C17.5173 14.8368 17.125 15 16.6666 15H6.66663ZM6.66663 13.3333H16.6666V3.33329H6.66663V13.3333ZM3.33329 18.3333C2.87496 18.3333 2.4826 18.1701 2.15621 17.8437C1.82982 17.5173 1.66663 17.125 1.66663 16.6666V5.83329C1.66663 5.59718 1.74649 5.39926 1.90621 5.23954C2.06593 5.07982 2.26385 4.99996 2.49996 4.99996C2.73607 4.99996 2.93399 5.07982 3.09371 5.23954C3.25343 5.39926 3.33329 5.59718 3.33329 5.83329V16.6666H14.1666C14.4027 16.6666 14.6007 16.7465 14.7604 16.9062C14.9201 17.0659 15 17.2638 15 17.5C15 17.7361 14.9201 17.934 14.7604 18.0937C14.6007 18.2534 14.4027 18.3333 14.1666 18.3333H3.33329Z" fill="#12636A"/>
+     </g>
+     </svg>
+     `,
+     `<svg width="18" height="18"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.84 31.82"><defs><style>.a{fill:#12636A;}</style></defs><path class="a" d="M31.84,24.86l-.07-3.22-2.45.18a5.94,5.94,0,0,0-1.67-2.64L28.76,17l-2.83-1.54-1.12,2.16a6.19,6.19,0,0,0-3.14.13l-1.3-2.05-2.72,1.73,1.26,2a6.52,6.52,0,0,0-1.45,2.78l-2.37.11.13,3.27,2.45-.11a6.06,6.06,0,0,0,1.66,2.64l-1.1,2.16,2.83,1.49,1.12-2.16a6.09,6.09,0,0,0,3.14-.19l1.24,2,2.72-1.72L28,27.73A6.16,6.16,0,0,0,29.41,25Zm-5.26.34,0,0a3.46,3.46,0,1,1-1.47-4.69A3.46,3.46,0,0,1,26.56,25.22ZM25,24.38l0,0a1.63,1.63,0,0,1-2.2.66,1.65,1.65,0,1,1,1.51-2.93h0A1.66,1.66,0,0,1,25,24.38ZM0,11.27H11.35V0H0ZM2.8,2.84H8.61V8.42H2.8ZM0,25.64H11.35V14.37H0Zm2.8-8.42H8.61v5.57H2.8ZM25.86,0H14.52V11.27H25.86ZM23.13,8.42H17.32V2.84h5.81Z"/></svg>`,
+     `<?xml version="1.0" encoding="utf-8"?>
+     <!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+     <svg width="18" height="18" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+     <style type="text/css">
+       .st0{fill:#12636A;}
+     </style>
+     <path class="st0" d="M28.1,3.4C28.1,3.4,28.1,3.4,28.1,3.4C28.1,3.4,28.1,3.4,28.1,3.4L28.1,3.4z M30.4,10.4
+       c-1.7,1.3-4.1,0.9-5.4-0.8L18.8,11c0,0.2,0,0.4,0,0.6c0,4.3-3.5,7.8-7.8,7.8c-0.3,0-0.7,0-1-0.1l-1.8,5.5c1.2,0.7,1.9,2,1.9,3.4
+       c0,2.1-1.7,3.9-3.9,3.9c-2.1,0-3.9-1.7-3.9-3.9c0-2.1,1.7-3.9,3.9-3.9c0.2,0,0.4,0,0.5,0L8.5,19c-1-0.3-1.9-0.8-2.7-1.5
+       c-3.3-2.8-3.6-7.8-0.8-11L3.5,4.8C3.2,4.9,2.8,5,2.5,5C1.1,5,0,3.9,0,2.5C0,1.1,1.1,0,2.5,0C3.9,0,5,1.1,5,2.5
+       c0,0.4-0.1,0.9-0.3,1.3l1.5,1.6C7,4.7,7.9,4.2,9,4c4.2-1.1,8.5,1.4,9.6,5.5l5.8-1.3c-0.1-0.3-0.1-0.6-0.1-0.9c0-2.1,1.7-3.9,3.9-3.9
+       c1.2,0,2.4,0.6,3.1,1.5C32.5,6.7,32.1,9.1,30.4,10.4z M14,7.3h-2V5.1h-2v2.2H7.9v5.2h4.2v1.4H8.9c-0.6,0-1,0.4-1,1v0.9H10V18h1.9
+       v-2.2H14v-5.2H9.9V9.2h3c0.6,0,1.1-0.5,1.1-1.1V7.3z"/>
+     </svg>
+     `,
+     `<?xml version="1.0" encoding="utf-8"?>
+     <!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+     <svg fill="#12636A" width="18" height="18" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+     <path d="M10.2,11.3H7v-3c0-0.9,0.6-1.5,1.4-1.5h0.3c0.8,0,1.5,0.7,1.5,1.5V11.3z M10,2.2l-1.4-1l-1.4,1l-6,4.3
+       C1.7,7.2,2.6,7.4,3.3,7v3.6C2,10.9,1.1,12,1.1,13.3c0,0.2,0.1,0.5,0.1,0.7c-0.5-0.1-1.1,0.2-1.2,0.8c-0.1,0.6,0.2,1.1,0.8,1.2h6.9
+       c0.3-0.3,0.4-0.7,0.4-1.2c0-1-0.8-1.7-1.7-1.7c0,0,0,0-0.1,0H6.1c0-0.9-0.6-1.7-1.3-2.1V6l3.7-2.7l3.9,2.8v8.3H11
+       c-0.8,0-1.5,0.7-1.5,1.5h2.9h1.3H14V7.1c0.7,0.3,1.5,0.1,2-0.6L10,2.2z M4.8,0H3.2v3.6l1.6-1.1V0z"/>
+     </svg>
+     `,
+     `<svg width="18" height="18" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100"><defs><clipPath id="clip-path"><rect x="7.51" y="3" width="84.73" height="93.7" fill="#12636A"/></clipPath></defs><g clip-path="url(#clip-path)"><path d="M16.37,81.35V12.55H48.22V22.84a5.92,5.92,0,0,0,6,5.64H64.84v7.84a6,6,0,0,0,5.92,6h3.18V28.48l-8.78-8.63-8.1-8.13L48.5,3h-41V90.39H31.59V87.21A6.15,6.15,0,0,0,25.47,81h0ZM44.11,57.14V48.51H53V41.22H44.11V32.36H36.18v8.86H27.32v7.42h8.86v8.5Z" fill="#12636A"/><path d="M92.24,96.7H81.36L64.43,79.77l-.35-.38-3.19,3.18L48.16,69.84,60.55,57.46,73.28,70.19,70.1,73.37l.37.35L91.16,94.41a4.11,4.11,0,0,1,1.08,2.29M61,51.63l18,18,2.17-2.17a4.33,4.33,0,0,0,0-6.12l0,0L69.05,49.15a3.93,3.93,0,0,0-5.55,0ZM40.27,72.38a4.36,4.36,0,0,0,0,6.15L52.43,90.68a3.94,3.94,0,0,0,5.57,0l2.49-2.48-18-18Z" fill="#12636A"/></g></svg>`,
+     `<?xml version="1.0" encoding="utf-8"?>
+     <!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+     <svg fill="#12636A" width="18" height="18" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+     <path d="M9.1,14.8H6v3H3v-3H0v-1.3c0-0.8,0.7-1.5,1.5-1.5h4.7v-1.6H0V3h3V0h3v3h3.1v1.2c0,0.9-0.7,1.6-1.6,1.6H2.9v1.6h6.2v2.9V14.8
+       z M32,15.5h-2.4V25H32v7H13.5V17.8h10.9V25h2.2v-9.5H13.4v-1.4h13.2v-2.4h3v2.4H32V15.5z M23,26.4v-7.2h-8.1v11.4h15.7l0-4.2H23z
+        M32,18.8v-1.7h-1.5v1.7H32z M16.4,22h1.5v-1.7h-1.5V22z M20,22h1.5v-1.7H20V22z M16.4,25.7h1.5V24h-1.5V25.7z M20,25.7h1.5V24H20
+       V25.7z M16.4,29.4h1.5v-1.7h-1.5V29.4z M20,29.4h1.5v-1.7H20V29.4z M25.6,27.7h-1.5v1.7h1.5V27.7z M29.1,27.7h-1.5v1.7h1.5V27.7z
+        M13.9,7.6h10.6v3.2H26V6.1H13.9V4.4l-3.1,2.4l3.1,2.4V7.6z M8.8,24.2H7.8v-4.9H6.3v6.4h2.4v1.7l3.1-2.4l-3.1-2.4V24.2z"/>
+     </svg>
+     `
+
+  ]
+  
+
+  iconAndTitle.forEach((li, index) => {
+    const svgElement = document.createElement("div");
+    svgElement.innerHTML = pathArr[index];
+
+    li.insertBefore(svgElement, li.firstChild);
+  });
+
+  iconAndTitle2.forEach((li, index) => {
+    const svgElement = document.createElement("div");
+    svgElement.innerHTML = pathArr[index];
+
+    li.insertBefore(svgElement, li.firstChild);
+  });
+  
+})
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const ulElement = document.querySelector('.map');
   const allLiElements = ulElement.querySelectorAll('li');
@@ -186,22 +293,26 @@ document.addEventListener("DOMContentLoaded", () => {
     smallCards[i].addEventListener("click", () => {
 
       console.log(`Clicked card ${i} index number`);
-      content_wrapper.classList.add("d-none")
-      rightCardContent__wrapper.classList.add("d-none")
+      const clickUrl = liElements[i].querySelector("li > ul.nested > li > a").href
 
-      cardButtonWrapper.classList.remove("hidecard")
-      mainCategoryFistTime.classList.remove("hidecard")
+      window.location.href = clickUrl
+
+
+      // content_wrapper.classList.add("d-none")
+      // rightCardContent__wrapper.classList.add("d-none")
+
+      // cardButtonWrapper.classList.remove("hidecard")
+      // mainCategoryFistTime.classList.remove("hidecard")
       
-      mainCategoryFistTimeMap.innerHTML = liElements[i].innerHTML;
-      const firsTimeCategory = document.querySelector("#firsTimeCategory")
-      const nested = firsTimeCategory.querySelectorAll(".nested")
-      nested.forEach((div) => {
-        div.classList.add("tocActive")
-      })
+      // mainCategoryFistTimeMap.innerHTML = liElements[i].innerHTML;
+      // const firsTimeCategory = document.querySelector("#firsTimeCategory")
+      // const nested = firsTimeCategory.querySelectorAll(".nested")
+      // nested.forEach((div) => {
+      //   div.classList.add("tocActive")
+      // })
     });
   }
 });
-
 
 
 
@@ -518,3 +629,5 @@ document.addEventListener("DOMContentLoaded", () => {
 //     cardElement.appendChild(colElement);
 //     bigCardText.appendChild(cardElement);
 // });
+
+
