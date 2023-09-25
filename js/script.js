@@ -924,7 +924,7 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log("No Previous Sibling");
           
           if (index === currentIndex) {
-            console.log(aa[index - 1].href)
+            // console.log(aa[index - 1].href)
 
             let elseArrLen = aa[index - 1].href.split("/")[aa[index - 1].href.split("/").length - 1].replace(".html", "").replaceAll("_", " ") 
             elseArrLen = capitalizeFirstLetter(elseArrLen)
