@@ -1,3 +1,5 @@
+
+
 // document.addEventListener("DOMContentLoaded", () => {
 
 //   const scrollButtonDown = document.getElementById('scrollButtonDown');
@@ -285,6 +287,18 @@ window.addEventListener("load", () => {
      }
 });
 
+
+function generateUniqueId() {
+  const timestamp = new Date().getTime(); // Get current timestamp
+  const random = Math.floor(Math.random() * 10000); // Generate a random number
+  
+  // Combine timestamp and random number to create a unique ID
+  const uniqueId = `${timestamp}-${random}`;
+  
+  return uniqueId;
+}
+
+
 function getTagsForTOC(element) {
   const nestedATags = [];
   function traverse(element) {
@@ -299,7 +313,16 @@ function getTagsForTOC(element) {
       } else {
         const parentDiv = element.parentNode;
         parentDiv.style.scrollMarginBlockStart = " 60px";
-        element.id = parentDiv.id;
+
+        if(parentDiv.id !== "") {
+          element.id = parentDiv.id;
+        }
+        else if(parentDiv.id === ""){
+          let tagText = element.innerText.replaceAll(" ", "_")
+          const id = generateUniqueId();
+          console.log(tagText + id )
+          element.id = tagText + id ;
+        }
         nestedATags.push(element);
       }
     } else {
@@ -903,10 +926,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (previousSibling) {
           const preATagHref = previousSibling.querySelectorAll("a")[0].href
+          const title = previousSibling.querySelectorAll("a")[0].innerText
 
-          let arrLen = preATagHref.split("/")[preATagHref.split("/").length - 1].replace(".html", "").replaceAll("_", " ") 
-          arrLen = capitalizeFirstLetter(arrLen)
-          const dot = arrLen.length > 30 ? "..." : "" 
+
+          // let arrLen = preATagHref.split("/")[preATagHref.split("/").length - 1].replace(".html", "").replaceAll("_", " ") 
+          // arrLen = capitalizeFirstLetter(arrLen)
+
+          
+          const dot = title.length > 30 ? "..." : "" 
           previousBtn.innerHTML = `
           <a href="${preATagHref}" class="previous d-flex">
             <div class="arrowIcon me-3 d-none d-md-block">
@@ -916,7 +943,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="btnText d-flex flex-column">
               <span>PREVIOUS</span>
-              ${arrLen.slice(0, 30)} ${dot}
+              ${title.slice(0, 30)}${dot}
             </div>
         </a> 
           `
@@ -926,9 +953,8 @@ document.addEventListener("DOMContentLoaded", () => {
           if (index === currentIndex) {
             // console.log(aa[index - 1].href)
 
-            let elseArrLen = aa[index - 1].href.split("/")[aa[index - 1].href.split("/").length - 1].replace(".html", "").replaceAll("_", " ") 
-            elseArrLen = capitalizeFirstLetter(elseArrLen)
-
+            let elseArrLen = aa[index - 1].innerText
+          
              const dot = elseArrLen.length > 30 ? "..." : ""
              
              previousBtn.innerHTML = `
@@ -940,7 +966,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="btnText d-flex flex-column">
               <span>PREVIOUS</span>
-              ${elseArrLen.slice(0, 30)} ${dot}
+              ${elseArrLen.slice(0, 30)}${dot}
             </div>
         </a> 
           `
@@ -951,16 +977,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (nextSibling) {
+
         const nextATagHref = nextSibling.querySelectorAll("a")[0].href
-        let arrLen = nextATagHref.split("/")[nextATagHref.split("/").length - 1].replace(".html", "").replaceAll("_", " ")
-        arrLen = capitalizeFirstLetter(arrLen)
-        const dot = arrLen.length > 30 ? "..." : "" 
+        const title = nextSibling.querySelectorAll("a")[0].innerText
+
+        // let arrLen = nextATagHref.split("/")[nextATagHref.split("/").length - 1].replace(".html", "").replaceAll("_", " ")
+        // arrLen = capitalizeFirstLetter(arrLen)
+        const dot = title.length > 30 ? "..." : "" 
           
         nextBtn.innerHTML = `
             <a href="${nextATagHref}" class="next d-flex">   
                 <div class="btnText d-flex align-items-end text-end flex-column">
                   <span>NEXT</span>
-                  ${arrLen.slice(0, 30)}${dot}
+                  ${title.slice(0, 30)}${dot}
                 </div>
                 <div class="arrowIcon ms-3 d-none d-md-block">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
@@ -974,9 +1003,10 @@ document.addEventListener("DOMContentLoaded", () => {
           
 
           if (index === currentIndex) {
-            let arrLen = aa[index + 1].href.split("/")[aa[index + 1].href.split("/").length - 1].replace(".html", "").replaceAll("_", " ")
+            // let arrLen = aa[index + 1].href.split("/")[aa[index + 1].href.split("/").length - 1].replace(".html", "").replaceAll("_", " ")
+            let arrLen = aa[index + 1].innerText
 
-            arrLen = capitalizeFirstLetter(arrLen)
+            // arrLen = capitalizeFirstLetter(arrLen)
             const dot = arrLen.length > 30 ? "..." : "" 
               
             nextBtn.innerHTML = `

@@ -1,35 +1,79 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const logo = document.querySelector(".dynamicLogo")
-
-  const imgElement = document.createElement("img");
-
-
+      // Favicon
   const linkElements = document.head.querySelectorAll('link[rel="stylesheet"]');
-  
+
   linkElements.forEach((linkElement) => {
     
     const hrefAttribute = linkElement.getAttribute("href");
     
     if(hrefAttribute.split("/")[hrefAttribute.split("/").length - 1] === "common-extended.css"){
  
-      // console.log(hrefAttribute.split("css")[0])
-      imgElement.src = hrefAttribute.split("css")[0] + "images/Aurigo_logo.svg"; 
+      const newFavicon = document.getElementById('favicon');
+  
+      newFavicon.href = hrefAttribute.split("css")[0] + "images/favicon.png";
     }
   });
-
-  // const count = currenthref.split("/out")[currenthref.split("/out").length - 1].split("/").filter(s => s)
-  // const count = currenthref.split("/").filter(s => s)  
-
-
-  // for (let i = 0; i < count.length - 1; i++) {
-  //   imagePath += dotdot;
-  // }
-
-  // imgElement.src = imagePath + "images/Aurigo_logo.svg"; 
-  logo.appendChild(imgElement)
-
 })
+
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+
+//   const linkElements = document.head.querySelectorAll('link[rel="stylesheet"]');
+
+//   linkElements.forEach((linkElement) => {
+    
+//     const hrefAttribute = linkElement.getAttribute("href");
+    
+//     if(hrefAttribute.split("/")[hrefAttribute.split("/").length - 1] === "common-extended.css"){
  
+//       var script = document.createElement('script');
+  
+//       script.src = hrefAttribute.split("css")[0] + "js/script.js";
+
+//       document.body.appendChild(script);
+//     }
+//   }); 
+// })
+
+
+
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// document.addEventListener("DOMContentLoaded", () => {
+//   const logo = document.querySelector(".dynamicLogo")
+
+//   const imgElement = document.createElement("img");
+
+
+//   const linkElements = document.head.querySelectorAll('link[rel="stylesheet"]');
+  
+//   linkElements.forEach((linkElement) => {
+    
+//     const hrefAttribute = linkElement.getAttribute("href");
+    
+//     if(hrefAttribute.split("/")[hrefAttribute.split("/").length - 1] === "common-extended.css"){
+ 
+//       // console.log(hrefAttribute.split("css")[0])
+//       imgElement.src = hrefAttribute.split("css")[0] + "images/Aurigo_logo.svg"; 
+//     }
+//   });
+
+//   // const count = currenthref.split("/out")[currenthref.split("/out").length - 1].split("/").filter(s => s)
+//   // const count = currenthref.split("/").filter(s => s)  
+
+
+//   // for (let i = 0; i < count.length - 1; i++) {
+//   //   imagePath += dotdot;
+//   // }
+
+//   // imgElement.src = imagePath + "images/Aurigo_logo.svg"; 
+//   logo.appendChild(imgElement)
+
+// })
+ 
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
  // ============================================================ Algolia and Search Modal
  
  document.addEventListener("DOMContentLoaded", () => {

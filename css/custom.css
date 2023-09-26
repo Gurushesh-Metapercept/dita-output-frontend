@@ -63,6 +63,10 @@ body {
 
 }
 
+.p, p {
+  line-height: 24px !important;
+}
+
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 { 
   font-family: 'Roboto', sans-serif !important;
   color: var(--primary-700) !important;
@@ -420,7 +424,7 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
 }
 
 .fig img {
-  width: 100%;
+  max-width: 100%;
 }
 
 @media (max-width: 991px) {
@@ -1417,7 +1421,7 @@ padding-left: 1.5rem !important;
 
 @media (min-width: 768px) { 
   .nextPrevious .btnText  {
-    font-size: 16px; 
+    font-size: 14px; 
   }
  }
 
@@ -1442,7 +1446,7 @@ padding-left: 1.5rem !important;
 
  .alert-info, .bigNote {
   display: block !important;
-  font-size: 16px;
+  font-size: 14px;
   background-color: #fef08a;
   border-left-width: 8px;
   border-left-style: solid;
@@ -1451,7 +1455,9 @@ padding-left: 1.5rem !important;
   margin: 16px 0px;
   border-radius: 4px;
  }
-
+ .body.conbody img {
+  max-width: 100%;
+ }
  .body.conbody ul{
   margin-top: 1rem !important;
  }
