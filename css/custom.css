@@ -1467,6 +1467,10 @@ padding-left: 1.5rem !important;
 .body .section.context .ul{
   margin-top: 1rem !important;
 }
+
+.body section.section {
+  margin-top: 1rem;
+}
 .body .p  {
   margin-bottom: 0 !important;
 }
@@ -1607,6 +1611,7 @@ footer span{
 }
 
 
+
 #scrollButtonUp ,
 #scrollButtonDown {
   display: none;
@@ -1626,22 +1631,23 @@ footer span{
   box-shadow: 0 4px 11px 0 rgba(37,44,97,.15), 0 1px 3px 0 rgba(93,100,148,.2);
   cursor: pointer;
 
+  z-index: 999;
 }
 
 #scrollButtonUp {
-  right: 50px;
+  right: 60px;
 }
 #scrollButtonDown {
   right: 10px;
 }
 
 
-@media (min-width: 992px) { 
+@media (min-width: 1200px) { 
   #scrollButtonUp {
-    right: 22.5%;
+    right: 130px;
   }
   #scrollButtonDown {
-    right: 20%;
+    right: 90px;
   }
 }
 
