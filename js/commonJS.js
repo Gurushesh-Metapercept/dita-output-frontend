@@ -15,62 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })
 
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-
-//   const linkElements = document.head.querySelectorAll('link[rel="stylesheet"]');
-
-//   linkElements.forEach((linkElement) => {
-    
-//     const hrefAttribute = linkElement.getAttribute("href");
-    
-//     if(hrefAttribute.split("/")[hrefAttribute.split("/").length - 1] === "common-extended.css"){
- 
-//       var script = document.createElement('script');
-  
-//       script.src = hrefAttribute.split("css")[0] + "js/script.js";
-
-//       document.body.appendChild(script);
-//     }
-//   }); 
-// })
-
-
-
-
-// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-// document.addEventListener("DOMContentLoaded", () => {
-//   const logo = document.querySelector(".dynamicLogo")
-
-//   const imgElement = document.createElement("img");
-
-
-//   const linkElements = document.head.querySelectorAll('link[rel="stylesheet"]');
-  
-//   linkElements.forEach((linkElement) => {
-    
-//     const hrefAttribute = linkElement.getAttribute("href");
-    
-//     if(hrefAttribute.split("/")[hrefAttribute.split("/").length - 1] === "common-extended.css"){
- 
-//       // console.log(hrefAttribute.split("css")[0])
-//       imgElement.src = hrefAttribute.split("css")[0] + "images/Aurigo_logo.svg"; 
-//     }
-//   });
-
-//   // const count = currenthref.split("/out")[currenthref.split("/out").length - 1].split("/").filter(s => s)
-//   // const count = currenthref.split("/").filter(s => s)  
-
-
-//   // for (let i = 0; i < count.length - 1; i++) {
-//   //   imagePath += dotdot;
-//   // }
-
-//   // imgElement.src = imagePath + "images/Aurigo_logo.svg"; 
-//   logo.appendChild(imgElement)
-
-// })
  
 
 // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -84,6 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const client = algoliasearch('QX9MQYMQ4D', 'edc43cd3cc2ceddc90b7eb276b3ccf1e');
     const indexName = "output-frontend"
+
+    // console.log("hello")
+    // const client = algoliasearch('MXP5XEK5FN', 'b455d5113e8705f4366e086076658a1b');
+    // const indexName = "aurigohtml5"
 
     function clearSearchInput() {
       searchInput.value = '';
@@ -120,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hits.forEach((hit) => {
           const resultItem = document.createElement('a');
           resultItem.classList.add('card');
-
+          console.log(hit)
 
           const cardBody = document.createElement('div');
           cardBody.classList.add('card-body');
@@ -169,3 +117,82 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
+
+
+
+// ========================================================================= Download Function 
+
+window.onload = function() {
+  document.getElementById('download-btn').addEventListener('click', function() {
+    window.scrollTo(0, 0);
+
+    setTimeout(async function() {
+      const headerElement = document.querySelector('#mainHeader').cloneNode(true);
+      const articleElement = document.querySelector('article').cloneNode(true);
+
+      // let logo = document.querySelector(".navbar-brand")
+
+      const elementsToIgnore = articleElement.querySelectorAll('.ignore-this');
+      elementsToIgnore.forEach(function(element) {
+        element.remove();
+      });
+
+      const headerElementsToIgnore = headerElement.querySelectorAll('.ignore-this');
+      headerElementsToIgnore.forEach(function(element) {
+        element.remove();
+      });
+
+      const combinedElement = document.createElement('div');
+      combinedElement.appendChild(headerElement);
+      combinedElement.appendChild(articleElement);
+
+      const imageTypes = ['png', 'jpeg', 'webp']; 
+      const options = {
+        margin: 10, 
+        filename: 'page.pdf',
+        image: { type: imageTypes, quality: 0.98 }, 
+        html2canvas: { scale: 2 }, 
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+      };
+
+      try {
+        await html2pdf().from(combinedElement).set(options).save('page.pdf');
+        console.log('PDF generated and saved successfully.');
+
+        // Any additional code you want to execute after the PDF is generated and saved
+
+      } catch (error) {
+        console.error('An error occurred while generating or saving the PDF:', error);
+      }
+    }, 1000);
+  });
+};
+
+
+
+  // ========================================================================= Print Function 
+function printPage() {
+
+  window.scrollTo(0, 0);
+
+  setTimeout(() => {
+
+  let elementsToHide = document.querySelectorAll('.no-print');
+  elementsToHide.forEach(function(element) {
+    element.style.display = 'none';
+  });
+
+
+  // let style = document.createElement('style');
+  // style.innerHTML = '@page { size: auto; margin-top: 5mm; margin-bottom: 5mm; }';
+  // document.head.appendChild(style);
+
+
+  window.print();
+  // style.remove();
+
+  elementsToHide.forEach(function(element) {
+    element.style.display = '';
+  });
+  }, 500)
+}
