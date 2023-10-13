@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const client = algoliasearch('QX9MQYMQ4D', 'edc43cd3cc2ceddc90b7eb276b3ccf1e');
     const indexName = "output-frontend"
 
-    // console.log("hello")
+
     // const client = algoliasearch('MXP5XEK5FN', 'b455d5113e8705f4366e086076658a1b');
     // const indexName = "aurigohtml5"
 

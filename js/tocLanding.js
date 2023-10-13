@@ -725,3 +725,42 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
 })
+
+
+
+document.addEventListener("DOMContentLoaded", () => { 
+  const ulElement = document.querySelector('.map');
+  const small__card = document.querySelector('.small__card');
+  const allLiElements = ulElement.querySelectorAll('li');
+
+
+  const liElements = Array.from(allLiElements).filter((liElement) => {
+    return liElement.parentElement === ulElement;
+  });
+
+ 
+
+  liElements.forEach((liElement) => {
+    const divElement = liElement.querySelector('div');
+    const cardText = divElement.querySelectorAll(".iconAndTitle")[0].innerText.trim()
+    const svgIcon = divElement.querySelectorAll(".iconAndTitle > div")[0].innerHTML
+    
+    console.log(divElement.querySelectorAll(".iconAndTitle")[0])
+    const cardWrapper = document.createElement('a');
+    cardWrapper.className = 'card-wrapper d-flex align-items-center';
+    cardWrapper.href = liElement.querySelector("a")
+
+    const titleSpan = document.createElement('span');
+    titleSpan.innerText = cardText
+   
+
+    const svgContainer = document.createElement('div');
+    svgContainer.className = 'svg-container';
+    svgContainer.innerHTML = svgIcon
+
+    cardWrapper.appendChild(titleSpan)
+    cardWrapper.insertBefore(svgContainer, cardWrapper.firstChild);
+    small__card.appendChild(cardWrapper)
+
+  })
+})

@@ -532,14 +532,25 @@ function setActiveClassOnClick(e) {
     })
   });
 
-
+  
   function sendEmail(ele, event) {
     event.preventDefault();
+
+    // let emailsList = ["gurushesh.p@metapercept.com"]
+    // const isCc = (e)=>{
+    //   if(e.target.checked){
+    //     emailsList.push("omkar.s@metapercept.com")
+    //   }else{
+    //     emailsList = ["gurushesh.p@metapercept.com"]
+    //   }
+    // }
+
+
     Email.send({
       Host : "smtp.elasticemail.com",
       Username : "gurushesh.p@metapercept.com",
       Password : "A45F7607648D21089CDB439D89039DF77AB7",
-      To : 'gurushesh.p@metapercept.com',
+      To : "gurushesh.p@metapercept.com",
       From : `gurushesh.p@metapercept.com`,
       Subject : "User Feedback",
       Body : `User has submitted feedback for the following post <a href="${ele.POST_URL.value}"><b>Link</b></a> <br/>
@@ -548,7 +559,7 @@ function setActiveClassOnClick(e) {
       <b>Comment</b>: ${ele.DESCRIPTION.value}
       `
   }).then(
-    message => console.warn(message)
+    message => alert(message)
   );
 
   return console.warn("Feedback submitted..")
